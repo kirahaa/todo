@@ -2,35 +2,37 @@
 
 <template>
     <ul class="list">
-        <li class="list-item" v-for="todoItem in todoItems" :key="todoItem">
-            <input type="checkbox" :id="todoItem.item">
+        <li class="list-item" v-for="(todoItem, index) in propsdata" :key="todoItem.item">
+            <input 
+                type="checkbox" 
+                :id="todoItem.item"
+                :checked="todoItem.completed ===  true"
+                :change="toggleComplete(todoItem)"
+            >
             <label :for="todoItem.item" class="list-label">
                 <p class="list-text">{{ todoItem }}</p>
             </label>
             <p class="list-date">12/1</p>
-            <button class="list-delete">Delete</button>
+            <button 
+                class="list-delete" 
+                @click="removeTodo(todoItem, index)"
+            >Delete</button>
         </li>
     </ul>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            todoItems: []
-        }
-    },
-    created() {
-        if (localStorage.length > 0) {
-            for (let i = 0; i < localStorage.length; i++) {
-                if (localStorage.key(i) !== "loglevel:webpack-dev-server") {
-                    this.todoItems.push(
-                       JSON.parse(localStorage.getItem(localStorage.key(i))) 
-                    );
-                }
-                // localStorage ? getItem() 메서드는 keyname을 인자로 keyValue를 리턴해준다.
-            }
-        }
+    props: ["propsdata"],
+    methods: {
+        removeTodo(todoItem, index) {
+            localStorage.removeItem(todoItem.item);
+            this.todoItems.splice(index,1);
+        },
+        toggleComplete(todoItem) {
+            todoItem.completed = !todoItem.completed;
+            localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+        },
     }
 }
 </script>
