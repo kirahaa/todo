@@ -4,11 +4,9 @@
     <div class="controller">
         <div class="select">
             <label for="order">Order</label>
-            <select name="order" id="order" class="selectbox">
+            <select name="order" id="order" class="selectbox" v-model="selected" v-on:change="sortTodo">
                 <option value="date-asc">Date Ascending</option>
                 <option value="date-desc">Date Descending</option>
-                <option value="name-asc">Name Ascending</option>
-                <option value="name-desc">Name Descending</option>
             </select>
         </div>
         <button class="clear" @click="clearTodo">Clear All</button>
@@ -17,9 +15,18 @@
 
 <script>
 export default {
-    clearTodo() {
-        localStorage.clear();
-        // localStorage 비우려면, clear() 메서드 사용!
+    data() {
+        return {
+            selected: "date-asc"
+        }
+    },
+    methods: {
+        clearTodo() {
+            this.$emit('clearAll');
+        },
+        sortTodo() {
+            this.$emit('sortItem', {value: this.selected});
+        }
     }
 }
 </script>

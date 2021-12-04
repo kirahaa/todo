@@ -1,10 +1,18 @@
 <template>
   <div id="app">
     <TodoHeader />
-    <TodoTitle />
+    <TodoTitle v-bind:propsdata="checkCount"/>
     <TodoInput v-on:addItem="addOneItem"/>
-    <TodoController />
-    <TodoList v-bind:propsdata="todoItems"/>
+    <TodoController 
+      v-on:sortItem="sortAllItem"
+      v-on:clearAll="clearAllItem"
+      />
+    <TodoList 
+      v-bind:propsdata="todoItems"
+      v-on:removeItem="removeOneItem"
+      v-on:toggleItem="toggleOneItem"
+      v-on:clearAll="clearAllItem"
+    />
     <TodoFooter />
   </div>
 </template>
@@ -25,7 +33,26 @@ export default {
         todoItems: []
     }
   },
+  computed: {
+    checkCount() {
+      const checkLeftItems = () => {
+        let leftCount = 0;
+        for(let i = 0; i < this.todoItems.length; i++) {
+          if(this.todoItems[i].completed === false) {
+            leftCount++;
+          }
+        }
+        return leftCount;
+      }
+      const count = {
+        total: this.todoItems.length,
+        left: checkLeftItems()
+      }
+      return count;
+    }
+  },
   created() {
+    console.log(this.todoItems);
     if (localStorage.length > 0) {
       for (let i = 0; i < localStorage.length; i++) {
         if (localStorage.key(i) !== "loglevel:webpack-dev-server") {
@@ -45,11 +72,43 @@ export default {
         item: todoItem,
         date: `${getDate().date} ${getDate().week}`,
         time: getDate().time,
-        completed: false 
+        completed: false
       };
       localStorage.setItem(todoItem, JSON.stringify(value));
       this.todoItems.push(value);
+    },
+    removeOneItem(todoItem, index) {
+        localStorage.removeItem(todoItem.item);
+        this.todoItems.splice(index,1);
+    },
+    toggleOneItem(todoItem) {
+        todoItem.completed = !todoItem.completed;
+        localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+    },
+    sortTodoLatest() {
+      this.todoItems.sort(function(a,b){
+        return b.time - a.time;
+      })
+    },
+    sortTodoOldest() {
+      this.todoItems.sort(function(a,b){
+        return a.time - b.time;
+      })
+    },
+    sortAllItem(selectedSort) {
+      if(selectedSort.value === "data-desc") {
+        this.sortTodoLatest();
+        } else {
+        this.sortTodoOldest();
+      }
+    },
+    clearAllItem() {
+      this.todoItems = [];
+      localStorage.clear();
     }
+  },
+  mounted() {
+    this.sortTodoOldest();
   },
   components: {
     TodoHeader,

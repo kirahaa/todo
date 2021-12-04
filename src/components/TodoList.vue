@@ -7,12 +7,12 @@
                 type="checkbox" 
                 :id="todoItem.item"
                 :checked="todoItem.completed ===  true"
-                :change="toggleComplete(todoItem)"
+                @change="toggleComplete(todoItem)"
             >
             <label :for="todoItem.item" class="list-label">
-                <p class="list-text">{{ todoItem }}</p>
+                <p class="list-text">{{ todoItem.item }}</p>
             </label>
-            <p class="list-date">12/1</p>
+            <p class="list-date">{{ todoItem.date }}, {{ todoItem.completed }}</p>
             <button 
                 class="list-delete" 
                 @click="removeTodo(todoItem, index)"
@@ -26,12 +26,10 @@ export default {
     props: ["propsdata"],
     methods: {
         removeTodo(todoItem, index) {
-            localStorage.removeItem(todoItem.item);
-            this.todoItems.splice(index,1);
+            this.$emit("removeItem", todoItem, index);
         },
         toggleComplete(todoItem) {
-            todoItem.completed = !todoItem.completed;
-            localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+            this.$emit("toggleItem", todoItem);
         },
     }
 }
@@ -43,7 +41,12 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding-bottom: 10px;
+        margin-bottom: 10px;
+        padding: 5px 0;
+        border-bottom: 1px solid #ccc;
     }
+}
+p {
+    margin: 0;
 }
 </style>

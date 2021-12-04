@@ -5,17 +5,17 @@
         <p class="title-message">{{ message }}</p>
         <p class="title-task">
             You've got
-            <span class="title-task-total">{{ taskTotal }}</span> tasks today.
+            <span class="title-task-total">{{ propsdata.left }} / {{ propsdata.total }}</span> tasks today.
         </p>
     </div>
 </template>
 
 <script>
 export default {
+    props: ["propsdata"],
     data() {
         return {
             message: "Hello, hayeong",
-            taskTotal: 5
         };
     }
 }
