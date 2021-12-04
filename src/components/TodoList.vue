@@ -9,6 +9,7 @@
                 :checked="todoItem.completed ===  true"
                 @change="toggleComplete(todoItem)"
             >
+            <!-- @change -->
             <label :for="todoItem.item" class="list-label">
                 <p class="list-text">{{ todoItem.item }}</p>
             </label>
