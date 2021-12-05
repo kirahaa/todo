@@ -1,6 +1,7 @@
 <!-- TodoList.vue -->
 
 <template>
+    <section>
     <ul class="list">
         <li class="list-item" v-for="(todoItem, index) in this.$store.state.todoItems" :key="todoItem.item">
             <input 
@@ -13,13 +14,14 @@
             <label :for="todoItem.item" class="list-label">
                 <p class="list-text">{{ todoItem.item }}</p>
             </label>
-            <p class="list-date">{{ todoItem.date }}, {{ todoItem.completed }}</p>
+            <p class="list-date">{{ todoItem.date }}</p>
             <button 
                 class="list-delete" 
                 @click="removeTodo(todoItem, index)"
-            >Delete</button>
+            >✕</button>
         </li>
     </ul>
+    </section>
 </template>
 
 <script>
@@ -45,6 +47,10 @@ export default {
 </script>
 
 <style lang="scss">
+section {
+    padding: 30px 0;
+    background-color: #eee;
+}
 .list {
     max-width: 720px;
     margin: 0 auto;
@@ -53,8 +59,30 @@ export default {
         justify-content: space-between;
         align-items: center;
         margin-bottom: 10px;
-        padding: 5px 0;
-        border-bottom: 1px solid #ccc;
+        padding: 15px 20px;
+        background-color: #fff;
+        font-size: 20px;
+        .list-label {
+            width: 75%;
+            p {
+                text-align: left;
+            }
+        }
+        .list-date {
+            width: 10%;
+            color: #aaa;
+            font-size: 15px;
+        }
+        button {
+            padding: 0 10px;
+            border: none;
+            background-color: transparent;
+            color: #aaa;
+            cursor: pointer;
+            &:hover {
+                color: #111;
+            }
+        }
     }
 }
 p {

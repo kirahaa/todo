@@ -1,16 +1,17 @@
 <!-- TodoController.vue -->
 
 <template>
+    <article>
     <div class="controller">
         <div class="select">
-            <label for="order">Order</label>
             <select name="order" id="order" class="selectbox" v-model="selected" @change="sortTodo">
-                <option value="date-asc">Date Ascending</option>
-                <option value="date-desc">Date Descending</option>
+                <option value="date-asc">Oldest</option>
+                <option value="date-desc">Latest</option>
             </select>
         </div>
         <button class="clear" @click="clearTodo">Clear All</button>
     </div>
+    </article>
 </template>
 
 <script>
@@ -36,3 +37,22 @@ export default {
     }
 }
 </script>
+
+<style lang="scss">
+article {
+    padding-top: 20px;
+    background: #eee;
+}
+.controller {
+    display: flex;
+    justify-content: space-between;
+    max-width: 720px;
+    margin: 0 auto;
+}
+select {
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    font-size: 18px;
+}
+</style>

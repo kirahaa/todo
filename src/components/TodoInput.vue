@@ -12,7 +12,7 @@
             >
         <button class="add-button" v-on:click="addTodoItem">
             <span class="blind">
-                Add
+                →
             </span>
         </button>
     </div>
@@ -41,3 +41,34 @@ export default {
     }
 }
 </script>
+
+<style lang="scss">
+.add {
+    display: flex;
+    justify-content: space-between;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    input {
+        width: 90%;
+        border: none;
+        height: 60px;
+        font-size: 20px;
+        text-indent: 10px;
+        outline: none;
+        background: transparent;
+    }
+    button {
+        border: none;
+        background-color: transparent;
+        color: #666;
+        font-size: 30px;
+        cursor: pointer;
+        &:hover {
+            color: #111;
+        }
+    }
+}
+</style>
