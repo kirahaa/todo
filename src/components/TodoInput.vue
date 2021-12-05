@@ -8,6 +8,7 @@
             placeholder="Enter your task" 
             v-model="newTodoItem"
             v-on:keyup.enter="addTodoItem"
+            ref="taskInput"
             >
         <button class="add-button" v-on:click="addTodoItem">
             <span class="blind">
@@ -27,10 +28,12 @@ export default {
     },
     methods: {
         addTodoItem() {
-            if (this.newTodoItem !== ""){
-                this.$emit("addItem", this.newTodoItem);
-                this.clearInput();
-            }
+            // if (this.newTodoItem !== ""){
+            //     this.$emit("addItem", this.newTodoItem);
+            // }
+            this.$store.commit("addOneItem", this.newTodoItem);
+            this.clearInput();
+            this.$refs.taskInput.focus();
         },
         clearInput() {
             this.newTodoItem = "";

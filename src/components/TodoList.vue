@@ -2,12 +2,12 @@
 
 <template>
     <ul class="list">
-        <li class="list-item" v-for="(todoItem, index) in propsdata" :key="todoItem.item">
+        <li class="list-item" v-for="(todoItem, index) in this.$store.state.todoItems" :key="todoItem.item">
             <input 
                 type="checkbox" 
                 :id="todoItem.item"
                 :checked="todoItem.completed ===  true"
-                @change="toggleComplete(todoItem)"
+                @change="toggleComplete({todoItem})"
             >
             <!-- @change -->
             <label :for="todoItem.item" class="list-label">
@@ -24,20 +24,30 @@
 
 <script>
 export default {
-    props: ["propsdata"],
     methods: {
         removeTodo(todoItem, index) {
-            this.$emit("removeItem", todoItem, index);
+            // this.$emit("removeItem", todoItem, index);
+            this.$store.commit("removeOneItem", {
+                todoItem, 
+                index
+            })
         },
         toggleComplete(todoItem) {
-            this.$emit("toggleItem", todoItem);
+            // this.$emit("toggleItem", todoItem);
+            this.$store.commit("toggleOneItem", todoItem);
         },
+    },
+    mounted() {
+        // list 기본 오래된 순 정렬
+        this.$store.commit('sortTodoOldest');
     }
 }
 </script>
 
 <style lang="scss">
 .list {
+    max-width: 720px;
+    margin: 0 auto;
     li {
         display: flex;
         justify-content: space-between;

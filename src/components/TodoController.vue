@@ -4,7 +4,7 @@
     <div class="controller">
         <div class="select">
             <label for="order">Order</label>
-            <select name="order" id="order" class="selectbox" v-model="selected" v-on:change="sortTodo">
+            <select name="order" id="order" class="selectbox" v-model="selected" @change="sortTodo">
                 <option value="date-asc">Date Ascending</option>
                 <option value="date-desc">Date Descending</option>
             </select>
@@ -22,10 +22,16 @@ export default {
     },
     methods: {
         clearTodo() {
-            this.$emit('clearAll');
+            // this.$emit('clearAll');
+            this.$store.commit('clearAllItem');
         },
         sortTodo() {
-            this.$emit('sortItem', {value: this.selected});
+            // this.$emit('sortItem', {value: this.selected});
+            if (this.selected === "date-desc") {
+                this.$store.commit("sortTodoLatest");
+            } else {
+                this.$store.commit("sortTodoOldest");
+            }
         }
     }
 }

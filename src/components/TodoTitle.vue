@@ -5,19 +5,38 @@
         <p class="title-message">{{ message }}</p>
         <p class="title-task">
             You've got
-            <span class="title-task-total">{{ propsdata.left }} / {{ propsdata.total }}</span> tasks today.
+            <span class="title-task-total">{{ this.todoItemsCount.left }} / {{ this.todoItemsCount.total }}</span> tasks today.
         </p>
     </div>
 </template>
 
 <script>
 export default {
-    props: ["propsdata"],
-    data() {
-        return {
-            message: "Hello, hayeong",
-        };
+  data() {
+      return {
+          message: "Hello, hayeong",
+      };
+  },
+  computed: {
+    todoItemsCount() {
+      const checkLeftItems = () => {
+        const items = this.$store.getters.storedTodoItems;
+        let leftCount = 0;
+        for(let i = 0; i < items.length; i++) {
+          if(items[i].completed === false) {
+            leftCount++;
+          }
+        }
+        return leftCount;
+      }
+      const count = {
+        total: this.$store.getters.storedTodoItemsCount,
+        left: checkLeftItems()
+      }
+      return count;
     }
+  }
+
 }
 </script>
 
