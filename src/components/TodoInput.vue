@@ -2,14 +2,14 @@
 
 <template>
     <div class="add">
-        <input 
-            type="text" 
-            class="add-input" 
-            placeholder="Enter your task" 
+        <input
+            type="text"
+            class="add-input"
+            placeholder="Enter your task"
             v-model="newTodoItem"
             v-on:keyup.enter="addTodoItem"
             ref="taskInput"
-            >
+        >
         <button class="add-button" v-on:click="addTodoItem">
             <span class="blind">
                 →

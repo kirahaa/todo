@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import getDate from '../assets/commonJS/getDate';
+// FIXME :; 게터 이름을 예약어 (getters) 로 사용하지 말것.
 import * as getters from "./modules/getters";
 
 Vue.use(Vuex);
@@ -13,7 +14,7 @@ const storage = {
             for (let i = 0; i < localStorage.length; i++) {
                 if (localStorage.key(i) !== "loglevel:webpack-dev-server") {
                   arr.push(
-                    JSON.parse(localStorage.getItem(localStorage.key(i))) 
+                    JSON.parse(localStorage.getItem(localStorage.key(i)))
                   );
                 }
                 // localStorage ? getItem() 메서드는 keyname을 인자로 keyValue를 리턴해준다.
@@ -33,12 +34,14 @@ export const store = new Vuex.Store({
     getters: getters,
     mutations: {
         addOneItem(state, todoItem) {
+            // FIXME :: var는 사용하지 않음.
             var value = {
                 item: todoItem,
                 date: `${getDate().date} ${getDate().week}`,
                 time: getDate().time,
                 completed: false
             };
+
             localStorage.setItem(todoItem, JSON.stringify(value));
             state.todoItems.push(value);
         },
