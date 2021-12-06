@@ -25,6 +25,7 @@ export default {
         clearTodo() {
             // this.$emit('clearAll');
             // FIXME :: 프론트에서는 commit 이 아니라 dispatch 를 사용해서 action 을 호출한다.
+            // commit -> mutation / dispatch -> action
             this.$store.commit('clearAllItem');
         },
         sortTodo() {
