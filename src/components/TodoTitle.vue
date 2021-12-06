@@ -19,31 +19,12 @@ export default {
   },
   computed: {
     todoItemsCount() {
-      const checkLeftItems = () => {
-          // FIXME :: 아래와 같은 동작을 하는 코드.
-          return this.$store.getters.storedTodoItems
-            .filter(value => !value.completed).length;
-        /*const items = this.$store.getters.storedTodoItems;
-        let leftCount = 0;
-        for(let i = 0; i < items.length; i++) {
-          if(items[i].completed === false) {
-            leftCount++;
-          }
-        }
-        return leftCount;*/
+      // FIXME :: const 변수가 필요하지 않음
+      return {
+          // FIXME :: getter 로 토탈을 가져올거면 left 도 게터를 만드는게 좋음
+          total: this.$store.getters.storedTodoItemsCount,
+          left: this.$store.getters.checkLeftItemsCount,
       }
-
-        // FIXME :: const 변수가 필요하지 않음
-        return {
-            // FIXME :: getter 로 토탈을 가져올거면 left 도 게터를 만드는게 좋음
-            total: this.$store.getters.storedTodoItemsCount,
-            left: checkLeftItems()
-        }
-      /*const count = {
-        total: this.$store.getters.storedTodoItemsCount,
-        left: checkLeftItems()
-      }
-      return count;*/
     }
   }
 

@@ -53,6 +53,9 @@ export const store = new Vuex.Store({
             payload.todoItem.completed = !payload.todoItem.completed;
             localStorage.setItem(payload.todoItem.item, JSON.stringify(payload.todoItem));
         },
+        checkLeftItems(state) {
+            state.todoItems.completed;
+        },
         clearAllItem(state) {
             state.todoItems = [];
             localStorage.clear();

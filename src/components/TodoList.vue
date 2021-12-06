@@ -37,6 +37,7 @@ export default {
         toggleComplete(todoItem) {
             // this.$emit("toggleItem", todoItem);
             this.$store.commit("toggleOneItem", todoItem);
+            // console.log(todoItem);
         },
     },
     mounted() {

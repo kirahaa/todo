@@ -21,7 +21,6 @@ export default ({
         // FIXME :: dayjs 또는 momentjs 플러그인 사용할것
         // this.timestamp = `${getDate().month}/${getDate().date} ${getDate().week}`;
         this.timestamp = dayjs().format("MM/DD");
-        console.log(this.timestamp);
     },
 })
 </script>
