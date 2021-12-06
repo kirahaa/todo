@@ -62,6 +62,9 @@ section {
         padding: 15px 20px;
         background-color: #fff;
         font-size: 20px;
+        &:last-of-type {
+            margin: 0;
+        }
         .list-label {
             width: 75%;
             p {

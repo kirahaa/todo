@@ -23,7 +23,19 @@ export default ({
 </script>
 
 <style lang="scss">
-
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 720px;
+    margin: 0 auto;
+    h1 {
+        font-size: 20px;
+    }
+    p {
+        color: #aaa;
+    }
+}
 </style>
 
 

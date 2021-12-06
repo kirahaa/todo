@@ -6,6 +6,7 @@
 
 <style lang="scss">
 footer {
+    padding: 100px 0;
     background-color: #eee;
 }
 </style>

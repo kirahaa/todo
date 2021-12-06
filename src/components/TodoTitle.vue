@@ -14,7 +14,7 @@
 export default {
   data() {
       return {
-          message: "Hello, hayeong",
+          message: "Hello,",
       };
   },
   computed: {
@@ -47,21 +47,17 @@ export default {
   color: #000;
  
   &-message {
-    font-size: 1.6rem;
+    font-size: 25px;
   }
  
   &-task {
-    margin-top: 3.5rem;
-    margin-bottom: 5rem;
+    margin-top: 56px;
+    margin-bottom: 80px;
     font-weight: bold;
  
-    &-top {
-      display: block;
-      font-size: 2.6rem;
-    }
  
     &-total {
-      font-size: 5.4rem;
+      font-size: 50px;
       line-height: 110%;
     }
   }

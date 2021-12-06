@@ -47,7 +47,7 @@ export default {
     display: flex;
     justify-content: space-between;
     max-width: 720px;
-    margin: 0 auto;
+    margin: 0 auto 40px;
     padding: 0 20px;
     border: 1px solid #ccc;
     border-radius: 30px;
