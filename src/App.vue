@@ -16,13 +16,14 @@ import TodoInput from './components/TodoInput';
 import TodoController from './components/TodoController';
 import TodoList from './components/TodoList';
 import TodoFooter from './components/TodoFooter';
+import dayjs from 'dayjs';
 
 
 export default {
   name: 'App',
   data() {
     return {
-
+      day: dayjs().format("YYYY-MM-DD")
     }
   },
   components: {

@@ -8,18 +8,21 @@
 </template>
 
 <script>
-import getDate from "../assets/commonJS/getDate.js";
+// import getDate from "../assets/commonJS/getDate.js";
+import dayjs from 'dayjs';
 
 export default ({
     data() {
         return {
-            timestamp: ""
+            timestamp: "",
         };
     },
     created() {
         // FIXME :: dayjs 또는 momentjs 플러그인 사용할것
-        this.timestamp = `${getDate().month}/${getDate().date} ${getDate().week}`;
-    }
+        // this.timestamp = `${getDate().month}/${getDate().date} ${getDate().week}`;
+        this.timestamp = dayjs().format("MM/DD");
+        console.log(this.timestamp);
+    },
 })
 </script>
 

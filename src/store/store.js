@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import getDate from '../assets/commonJS/getDate';
 // FIXME :; 게터 이름을 예약어 (getters) 로 사용하지 말것.
-import * as getters from "./modules/getters";
+import * as getData from "./modules/getters";
 
 Vue.use(Vuex);
 
@@ -31,11 +31,11 @@ export const store = new Vuex.Store({
         todoItems: storage.fetch(),
         todoOldestOrder: true
     },
-    getters: getters,
+    getters: getData,
     mutations: {
         addOneItem(state, todoItem) {
             // FIXME :: var는 사용하지 않음.
-            var value = {
+            let value = {
                 item: todoItem,
                 date: `${getDate().date} ${getDate().week}`,
                 time: getDate().time,
