@@ -50,7 +50,19 @@ article {
     justify-content: space-between;
     max-width: 720px;
     margin: 0 auto;
+
+    button {
+        padding: 0 10px;
+        border: none;
+        background-color: transparent;
+        color: #aaa;
+        cursor: pointer;
+        &:hover {
+            color: #111;
+        }
+    }
 }
+
 select {
     height: 40px;
     padding: 0 10px;

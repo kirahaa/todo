@@ -2,11 +2,11 @@
   <div id="app">
     <TodoHeader />
     <TodoTitle />
-    <TodoInput />
+    <TodoInput v-on:alertModal="showModal"/>
     <TodoController />
     <TodoList />
     <TodoFooter />
-    <Modal v-show="showModal" v-on:close="showModal = false">
+    <Modal v-show="modalVisible" v-on:close="modalVisible = false">
       <template v-slot:modal-text>{{ modalText }}</template>
     </Modal>
   </div>
@@ -26,8 +26,14 @@ export default {
   name: 'App',
   data() {
     return {
-      showModal: false,
+      modalVisible: false,
       modalText: ""
+    }
+  },
+  methods: {
+    showModal(text) {
+      this.modalText = text;
+      this.modalVisible = !this.modalVisible;
     }
   },
   components: {
@@ -55,16 +61,7 @@ ul, ol {
   padding: 0;
   margin: 0;
 }
-button {
-  padding: 0 10px;
-  border: none;
-  background-color: transparent;
-  color: #aaa;
-  cursor: pointer;
-  &:hover {
-      color: #111;
-  }
-}
+
 #app {
   margin: 0 auto;
   text-align: center;
