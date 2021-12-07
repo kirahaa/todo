@@ -3,7 +3,7 @@
     <TodoHeader />
     <TodoTitle />
     <TodoInput v-on:alertModal="showModal"/>
-    <TodoController />
+    <TodoController v-on:alertModal="showModal"/>
     <TodoList />
     <TodoFooter />
     <Modal v-show="modalVisible" v-on:close="modalVisible = false">

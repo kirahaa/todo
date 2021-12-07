@@ -26,7 +26,9 @@ export default {
             // this.$emit('clearAll');
             // FIXME :: 프론트에서는 commit 이 아니라 dispatch 를 사용해서 action 을 호출한다.
             // commit -> mutation / dispatch -> action
-            this.$store.commit('clearAllItem');
+            const modalText = "It cannot be canceled. Are you sure you want to erase all?";
+            this.$emit('alertModal', modalText);
+            // this.$store.commit('clearAllItem');
         },
         sortTodo() {
             // this.$emit('sortItem', {value: this.selected});
