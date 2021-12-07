@@ -6,6 +6,9 @@
     <TodoController />
     <TodoList />
     <TodoFooter />
+    <Modal v-show="showModal" v-on:close="showModal = false">
+      <template v-slot:modal-text>{{ modalText }}</template>
+    </Modal>
   </div>
 </template>
 
@@ -16,13 +19,15 @@ import TodoInput from './components/TodoInput';
 import TodoController from './components/TodoController';
 import TodoList from './components/TodoList';
 import TodoFooter from './components/TodoFooter';
+import Modal from './components/common/Modal';
 
 
 export default {
   name: 'App',
   data() {
     return {
-      
+      showModal: false,
+      modalText: ""
     }
   },
   components: {
@@ -31,7 +36,8 @@ export default {
     TodoInput,
     TodoController,
     TodoList,
-    TodoFooter
+    TodoFooter,
+    Modal
   }
 }
 </script>
