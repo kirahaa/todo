@@ -7,7 +7,7 @@
             class="add-input"
             placeholder="Enter your task"
             v-model="newTodoItem"
-            v-on:keyup.enter="addTodoItem"
+            v-on:keypress.enter="addTodoItem"
             ref="taskInput"
         >
         <button class="add-button" v-on:click="addTodoItem">
