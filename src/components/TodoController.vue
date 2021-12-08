@@ -28,7 +28,6 @@ export default {
             // commit -> mutation / dispatch -> action
             const modalText = "It cannot be canceled. Are you sure you want to erase all?";
             this.$emit('alertModal', modalText);
-            // this.$store.commit('clearAllItem');
         },
         sortTodo() {
             // this.$emit('sortItem', {value: this.selected});

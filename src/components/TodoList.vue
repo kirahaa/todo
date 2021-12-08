@@ -38,6 +38,7 @@ export default {
             // this.$emit("toggleItem", todoItem);
             this.$store.commit("toggleOneItem", todoItem);
             // console.log(todoItem);
+            // commit은 mutation을 직접 가져오는것.
         },
     },
     mounted() {

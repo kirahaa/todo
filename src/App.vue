@@ -9,6 +9,9 @@
     <Modal v-show="modalVisible" v-on:close="modalVisible = false">
       <template v-slot:modal-text>{{ modalText }}</template>
     </Modal>
+    <ConfirmModal v-show="modalVisible" v-on:close="modalVisible = false">
+      <template v-slot:modal-text>{{ modalText }}</template>
+    </ConfirmModal>
   </div>
 </template>
 
@@ -20,6 +23,7 @@ import TodoController from './components/TodoController';
 import TodoList from './components/TodoList';
 import TodoFooter from './components/TodoFooter';
 import Modal from './components/common/Modal';
+import ConfirmModal from './components/common/ConfirmModal';
 
 
 export default {
@@ -27,14 +31,16 @@ export default {
   data() {
     return {
       modalVisible: false,
-      modalText: ""
+      modalText: "",
+      confirmMethods: true
     }
   },
   methods: {
     showModal(text) {
       this.modalText = text;
       this.modalVisible = !this.modalVisible;
-    }
+    },
+
   },
   components: {
     TodoHeader,
@@ -43,7 +49,8 @@ export default {
     TodoController,
     TodoList,
     TodoFooter,
-    Modal
+    Modal,
+    ConfirmModal
   }
 }
 </script>
