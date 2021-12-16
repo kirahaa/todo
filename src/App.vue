@@ -2,17 +2,17 @@
   <div id="app">
     <TodoHeader />
     <TodoTitle />
-    <TodoInput @on:alertModal="showModal"/>
-    <TodoController @on:alertModal="showConfirmModal"/>
+    <TodoInput @alertModal="showModal"/>
+    <TodoController @alertModal="showConfirmModal"/>
     <TodoList />
     <TodoFooter />
 
     <!-- Modal --> 
-    <Modal v-show="modalVisible" @on:close="modalVisible = false">
+    <Modal v-show="modalVisible" @close="modalVisible = false">
       <template v-slot:modal-text>{{ modalText }}</template>
     </Modal>
 
-    <ConfirmModal v-show="ConfirmModalVisible" @on:close="ConfirmModalVisible = false">
+    <ConfirmModal v-show="ConfirmModalVisible" @close="ConfirmModalVisible = false">
       <template v-slot:modal-text>{{ modalText }}</template>
     </ConfirmModal>
   </div>

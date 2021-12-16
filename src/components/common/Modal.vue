@@ -4,7 +4,9 @@
             <p class="modal-content-text">
                 <slot name="modal-text">(여기에 모달 내용이 들어감)</slot>
             </p>
-            <button class="modal-close" v-on:click="$emit('close')">OK</button>
+            <button class="modal-close" v-on:click="$emit('close')">
+                OK
+            </button>
         </div>
     </div>
 </template>
