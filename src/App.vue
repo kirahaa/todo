@@ -3,13 +3,13 @@
     <TodoHeader />
     <TodoTitle />
     <TodoInput v-on:alertModal="showModal"/>
-    <TodoController v-on:alertModal="showModal"/>
+    <TodoController v-on:alertModal="showConfirmModal"/>
     <TodoList />
     <TodoFooter />
     <Modal v-show="modalVisible" v-on:close="modalVisible = false">
       <template v-slot:modal-text>{{ modalText }}</template>
     </Modal>
-    <ConfirmModal v-show="modalVisible" v-on:close="modalVisible = false">
+    <ConfirmModal v-show="ConfirmModalVisible" v-on:close="ConfirmModalVisible = false">
       <template v-slot:modal-text>{{ modalText }}</template>
     </ConfirmModal>
   </div>
@@ -31,6 +31,7 @@ export default {
   data() {
     return {
       modalVisible: false,
+      ConfirmModalVisible: false,
       modalText: "",
       confirmMethods: true
     }
@@ -40,7 +41,10 @@ export default {
       this.modalText = text;
       this.modalVisible = !this.modalVisible;
     },
-
+    showConfirmModal(text) {
+      this.modalText = text;
+      this.ConfirmModalVisible = !this.ConfirmModalVisible;
+    }
   },
   components: {
     TodoHeader,

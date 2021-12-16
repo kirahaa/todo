@@ -31,7 +31,6 @@ export default {
             if(! this.newTodoItem) {
                 const modalText = "The form is empty, Please note your task.";
                 this.$emit("alertModal", modalText);
-                this.clearInput();
                 return false;
             }
             this.$store.commit("addOneItem", this.newTodoItem);
