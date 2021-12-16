@@ -6,6 +6,8 @@
     <TodoController v-on:alertModal="showConfirmModal"/>
     <TodoList />
     <TodoFooter />
+
+    <!-- Modal --> 
     <Modal v-show="modalVisible" v-on:close="modalVisible = false">
       <template v-slot:modal-text>{{ modalText }}</template>
     </Modal>
@@ -28,6 +30,16 @@ import ConfirmModal from './components/common/ConfirmModal';
 
 export default {
   name: 'App',
+  components: {
+    TodoHeader,
+    TodoTitle,
+    TodoInput,
+    TodoController,
+    TodoList,
+    TodoFooter,
+    Modal,
+    ConfirmModal
+  },
   data() {
     return {
       modalVisible: false,
@@ -45,16 +57,6 @@ export default {
       this.modalText = text;
       this.ConfirmModalVisible = !this.ConfirmModalVisible;
     }
-  },
-  components: {
-    TodoHeader,
-    TodoTitle,
-    TodoInput,
-    TodoController,
-    TodoList,
-    TodoFooter,
-    Modal,
-    ConfirmModal
   }
 }
 </script>
