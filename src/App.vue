@@ -8,13 +8,24 @@
     <TodoFooter />
 
     <!-- Modal --> 
-    <Modal v-show="modalVisible" @close="modalVisible = false">
+    <Modal 
+        v-show="modalVisible" 
+        @close="modalVisible = false" 
+        :modalType="modalTypes"
+      >
       <template v-slot:modal-text>{{ modalText }}</template>
     </Modal>
 
     <ConfirmModal v-show="ConfirmModalVisible" @close="ConfirmModalVisible = false">
       <template v-slot:modal-text>{{ modalText }}</template>
     </ConfirmModal>
+
+    <!-- handling event는 각 component에서 일어나는 게 나을까? 
+    아니면 app.vue에서 일어나는게 나을까? 
+    각 component에서 일어나는게 나을듯..
+     -->
+    <!-- -->
+
   </div>
 </template>
 
@@ -46,11 +57,16 @@ export default {
       modalVisible: false,
       ConfirmModalVisible: false,
       modalText: "",
-      confirmMethods: true
+      confirmMethods: true,
     }
   },
   methods: {
     showModal(text) {
+      if(event.target.classList.contains('add-input')) {
+        this.modalType = false;
+      } else {
+        this.modalType = true;
+      }
       this.modalText = text;
       this.modalVisible = !this.modalVisible;
     },

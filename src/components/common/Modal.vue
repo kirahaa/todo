@@ -1,23 +1,39 @@
 <template>
+    <transition name="modal" appear>
     <div class="modal modal-dim" v-on:click.self="$emit('close')">
-        <div class="modal-content">
-            <p class="modal-content-text">
-                <slot name="modal-text">(여기에 모달 내용이 들어감)</slot>
-            </p>
-            <button class="modal-close" v-on:click="$emit('close')">
-                OK
-            </button>
+        <div class="modal-window">
+            <div class="modal-window-content">
+                <p class="modal-window-content-text">
+                    <slot name="modal-text">(여기에 모달 내용이 들어감)</slot>
+                </p>
+                <!--
+                <button>
+                    <slot name="ok-button">ok</slot>
+                </button>
+                <button v-on:click="$emit('close')" v-if="modalType">
+                    <slot name="no-button">no</slot>
+                </button>
+                -->
+
+                <button class="modal-close" v-on:click="$emit('close')">
+                    OK
+                </button>
+            </div>
         </div>
     </div>
+    </transition>
 </template>
 
 <script>
 export default {
+    // props: {
+    //     modalType: Boolean
+    // },
     data() {
         return {
             
         }
-    }
+    },
 }
 </script>
 
@@ -35,12 +51,13 @@ export default {
         background-color: rgba(0, 0, 0, 0.4);
         z-index: 999;
     }
-    
-    &-content {
+    &-window {
+        background-color: #fff;
+        border-radius: 2px;
+        &-content {
         min-width: 500px;
         margin: 0 auto;
         padding: 30px;
-        border-radius: 2px;
         box-shadow: 0 10px 30px -4px rgba(10, 10, 10, 0.2);
         background-color: #fff;
         transition: all 0.3s ease;
@@ -64,5 +81,26 @@ export default {
             }
         }
     }
+    }
+    
+}
+
+/* dim 트렌지션 */
+.modal-enter-active, modal-leave-active {
+    transition: opacity 0.4s;
+}
+/*  */
+.modal-window {
+    transition: opacity 0.4s, transfrom 0.4s;
+}
+.modal-leave-active {
+    transition: opacity 0.6s ease 0.4s;
+}
+.modal-enter, .modal-leave-to {
+    opacity: 0;
+}
+.modal-window {
+    opacity: 1;
+    transform: translateY(-20px);
 }
 </style>
