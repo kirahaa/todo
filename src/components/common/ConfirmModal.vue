@@ -1,4 +1,5 @@
 <template>
+    <transition name="modal">
     <div class="modal modal-dim" v-on:click.self="$emit('close')">
         <div class="modal-content">
             <p class="modal-content-text">
@@ -8,6 +9,7 @@
             <button class="modal-close" v-on:click="$emit('close')">No</button>
         </div>
     </div>
+    </transition>
 </template>
 
 <script>
@@ -72,5 +74,24 @@ export default {
             }
         }
     }
+}
+
+/* modal-enter-active, modal-leave-active 트랜지션 */
+.modal-enter-active, .modal-leave-active {
+    transition: opacity 0.4s;
+}
+.modal-content {
+    transition: opacity 0.4s, transform 0.4s;
+}
+.modal-leave-active {
+    transition: opacity 0.6s ease 0.4s;
+}
+/* modal-enter, .modal-leave-to [set] 시작과 끝*/ 
+.modal-enter, .modal-leave-to {
+    opacity: 0;
+}
+.modal-content {
+    opacity: 1;
+    transform: translateY(-20px)
 }
 </style>
