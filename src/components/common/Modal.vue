@@ -84,20 +84,17 @@ export default {
     }
     
 }
+/* dim transition */
+.modal-enter, .modal-leave-to {
+    opacity: 0;
+}
 
-/* dim 트렌지션 */
 .modal-enter-active, modal-leave-active {
     transition: opacity 0.4s;
 }
-/*  */
+/* modal transition */
 .modal-window {
     transition: opacity 0.4s, transfrom 0.4s;
-}
-.modal-leave-active {
-    transition: opacity 0.6s ease 0.4s;
-}
-.modal-enter, .modal-leave-to {
-    opacity: 0;
 }
 .modal-window {
     opacity: 1;

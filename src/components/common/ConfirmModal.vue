@@ -76,19 +76,16 @@ export default {
     }
 }
 
+/* modal-enter, .modal-leave-to [set] 시작과 끝*/ 
+.modal-enter, .modal-leave-to {
+    opacity: 0;
+}
 /* modal-enter-active, modal-leave-active 트랜지션 */
 .modal-enter-active, .modal-leave-active {
     transition: opacity 0.4s;
 }
 .modal-content {
     transition: opacity 0.4s, transform 0.4s;
-}
-.modal-leave-active {
-    transition: opacity 0.6s ease 0.4s;
-}
-/* modal-enter, .modal-leave-to [set] 시작과 끝*/ 
-.modal-enter, .modal-leave-to {
-    opacity: 0;
 }
 .modal-content {
     opacity: 1;
