@@ -5,8 +5,8 @@
             <p class="modal-content-text">
                 <slot name="modal-text">(여기에 모달 내용이 들어감)</slot>        
             </p>
-            <button class="modal-ok" v-on:click="alertClear()">OK</button>
-            <button class="modal-close" v-on:click="$emit('close')">No</button>
+            <button class="modal-ok" @click="alertClear()">OK</button>
+            <button class="modal-close" @click="$emit('close')">No</button>
         </div>
     </div>
     </transition>
@@ -21,7 +21,6 @@ export default {
     },
     methods: {
         alertClear() {
-            this.modalVisible = !this.modalVisible;
             this.$store.commit('clearAllItem');
             this.$emit('close');
         }
@@ -47,6 +46,7 @@ export default {
     }
     
     &-content {
+        position: relative;
         min-width: 500px;
         margin: 0 auto;
         padding: 30px;
@@ -84,8 +84,8 @@ export default {
 .modal-enter-active, .modal-leave-active {
     transition: opacity 0.4s;
 }
-.modal-content {
-    transition: opacity 0.4s, transform 0.4s;
+.modal-content-enter-active, .modal-content-leave-active {
+    transition: all 0.4s;
 }
 .modal-content {
     opacity: 1;

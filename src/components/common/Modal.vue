@@ -6,15 +6,6 @@
                 <p class="modal-window-content-text">
                     <slot name="modal-text">(여기에 모달 내용이 들어감)</slot>
                 </p>
-                <!--
-                <button>
-                    <slot name="ok-button">ok</slot>
-                </button>
-                <button v-on:click="$emit('close')" v-if="modalType">
-                    <slot name="no-button">no</slot>
-                </button>
-                -->
-
                 <button class="modal-close" v-on:click="$emit('close')">
                     OK
                 </button>
@@ -26,9 +17,6 @@
 
 <script>
 export default {
-    // props: {
-    //     modalType: Boolean
-    // },
     data() {
         return {
             
@@ -39,6 +27,7 @@ export default {
 
 <style lang="scss">
 .modal {
+    position: relative;
     &-dim {
         display: flex;
         justify-content: center;
@@ -85,19 +74,45 @@ export default {
     
 }
 /* dim transition */
+
 .modal-enter, .modal-leave-to {
     opacity: 0;
 }
-
-.modal-enter-active, modal-leave-active {
-    transition: opacity 0.4s;
+.modal-enter-active {
+    transition: all 0.4s;
 }
-/* modal transition */
-.modal-window {
-    transition: opacity 0.4s, transfrom 0.4s;
+.modal-leave-active {
+    transition: all 0.8s;
+}
+/* modal content transition */
+
+
+.modal-window-enter-active, .modal-window-leave-active {
+    transition: all 0.4s;
 }
 .modal-window {
     opacity: 1;
     transform: translateY(-20px);
 }
+
+/*
+.modal-enter-active {
+    animation: bounce-in .5s;
+}
+.modal-leave-active {
+    animation: bounce-in .5s reverse;
+}
+
+@keyframes bounce-in {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+*/
 </style>

@@ -10,8 +10,7 @@
     <!-- Modal --> 
     <Modal 
         v-show="modalVisible" 
-        @close="modalVisible = false" 
-        :modalType="modalTypes"
+        @close="modalVisible = false"
       >
       <template v-slot:modal-text>{{ modalText }}</template>
     </Modal>
@@ -24,7 +23,6 @@
     아니면 app.vue에서 일어나는게 나을까? 
     각 component에서 일어나는게 나을듯..
      -->
-    <!-- -->
 
   </div>
 </template>
